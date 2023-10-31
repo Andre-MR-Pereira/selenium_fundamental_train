@@ -13,6 +13,9 @@ public class FileUpload {
 
         driver.get("https://formy-project.herokuapp.com/fileupload");
 
+        WebElement fileUploadField = driver.findElement(By.id("file-upload-field"));
+        fileUploadField.sendKeys("file-to-upload.png");
+
         driver.quit();
     }
 }

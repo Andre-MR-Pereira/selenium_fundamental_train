@@ -13,6 +13,9 @@ public class Datepicker {
 
         driver.get("https://formy-project.herokuapp.com/datepicker");
 
+        WebElement dateField = driver.findElement(By.id("datepicker"));
+        dateField.sendKeys("05/03/2025");
+        dateField.sendKeys(Keys.RETURN);
         driver.quit();
     }
 }

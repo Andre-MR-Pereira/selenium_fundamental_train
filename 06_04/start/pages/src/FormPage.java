@@ -1,17 +1,11 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Form {
-    public static void main(String[] args) {
+public class FormPage {
 
-        System.setProperty("webdriver.chrome.driver", "/Users/AndrePereiraNational/Documents/NBI/drivers_selenium/chromedriver/chromedriver_v118.exe");
-
-        WebDriver driver = new ChromeDriver();
-
-        driver.get("https://formy-project.herokuapp.com/form");
-
+    public FormPage() {}
+    public static void submitForm(WebDriver driver) {
         driver.findElement(By.id("first-name")).sendKeys("Andre");
         driver.findElement(By.id("last-name")).sendKeys("Pereira");
 
@@ -28,7 +22,5 @@ public class Form {
         driver.findElement(By.id("datepicker")).sendKeys(Keys.RETURN);
 
         driver.findElement(By.cssSelector(".btn.btn-lg.btn-primary")).click();
-
-        driver.quit();
     }
 }

@@ -16,23 +16,41 @@ public class Form {
 
         driver.get("https://formy-project.herokuapp.com/form");
 
-        driver.findElement(By.id("first-name")).sendKeys("John");
+        submitForm(driver);
 
-        driver.findElement(By.id("last-name")).sendKeys("Doe");
+        waitForAlertBanner(driver);
 
-        driver.findElement(By.id("job-title")).sendKeys("QA Engineer");
+        assertEquals("The form was successfully submitted!", getAlertText(driver));
+
+        driver.quit();
+    }
+
+    public static void submitForm(WebDriver driver) {
+        driver.findElement(By.id("first-name")).sendKeys("Andre");
+        driver.findElement(By.id("last-name")).sendKeys("Pereira");
+
+        driver.findElement(By.id("job-title")).sendKeys("Junior Release Engineer");
 
         driver.findElement(By.id("radio-button-2")).click();
 
-        driver.findElement(By.id("checkbox-2")).click();
+        driver.findElement(By.id("checkbox-1")).click();
 
         driver.findElement(By.cssSelector("option[value='1']")).click();
 
-        driver.findElement(By.id("datepicker")).sendKeys("05/28/2019");
+        driver.findElement(By.id("datepicker")).sendKeys("10/31/2023");
+
         driver.findElement(By.id("datepicker")).sendKeys(Keys.RETURN);
 
         driver.findElement(By.cssSelector(".btn.btn-lg.btn-primary")).click();
+    }
 
-        driver.quit();
+    public static void waitForAlertBanner(WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        WebElement alert = wait.until((ExpectedConditions.visibilityOfElementLocated(By.className("alert"))));
+    }
+
+    public static String getAlertText(WebDriver driver) {
+        String alertText = driver.findElement(By.className("alert")).getText();
+        return alertText;
     }
 }

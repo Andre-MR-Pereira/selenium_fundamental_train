@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Autocomplete {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         System.setProperty("webdriver.chrome.driver", "/Users/AndrePereiraNational/Documents/NBI/drivers_selenium/chromedriver/chromedriver_v118.exe");
 
@@ -16,9 +16,9 @@ public class Autocomplete {
 
         WebElement autocomplete = driver.findElement(By.id("autocomplete"));
         autocomplete.sendKeys("1555 Park Blvd, Palo Alto, CA");
-        Thread.sleep(1000);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
 
-        WebElement autocompleteResult = driver.findElement(By.className("pac-item"));
+        WebElement autocompleteResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("dismissButton")));
         autocompleteResult.click();
 
         driver.quit();
